@@ -14,9 +14,9 @@ class VideosMigration extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('youtube_id',11);
+            $table->integer('youtube_id');
             $table->string('video_url');
-            $table->char('video_img_id',11);
+            $table->integer('video_img_id');
             $table->string('video_img_label');
             $table->string('titulo');
             $table->timestamps();

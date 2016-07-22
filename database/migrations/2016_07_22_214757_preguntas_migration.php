@@ -18,9 +18,9 @@ class PreguntasMigration extends Migration
             $table->string('pregunta_url');
 
 
-            $table->integer('usuario_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
-            $table->foreign('usuario_id')->reference('id')->on('videos');
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
         });
