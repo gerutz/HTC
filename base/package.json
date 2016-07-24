@@ -9,6 +9,7 @@
   "author": "Sergio Rafael Gianazza <sgianazza@gmail.com> (http://softwarepsychonaut.com/)",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^6.3.7",
     "babel-cli": "^6.7.5",
     "babel-core": "^6.7.6",
     "babel-loader": "^6.2.4",
