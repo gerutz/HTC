@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+//import {HeaderComponent} from 'header_component';
 
 export default class SimpleComponent extends Component {
   constructor(props) {
@@ -8,22 +9,27 @@ export default class SimpleComponent extends Component {
     };
   }
 
-  handleSubmit() {
-    console.log('---- VALORES ----');
-    console.log(this.state.controlledInputValue);
-    console.log(this._uncontrolledText.value);
-    console.log('-----------------');
+  render() {
+    return(
+      <div>
+        <HeaderComponent />
+      </div>
+    );
+  }
+}
+
+export default class HeaderComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      controlledInputValue: ''
+    };
   }
 
   render() {
     return(
       <div>
-        <input
-          type='text'
-          value={this.state.controlledInputValue}
-          onChange={(evt) => this.setState({ controlledInputValue: evt.target.value })}/> <br />
-        <input type='text' defaultValue='' ref={(el) => { this._uncontrolledText = el; } }/><br />
-        <button onClick={this.handleSubmit.bind(this)}>Mandar!</button>
+        <h1>Hola Loco</h1>
       </div>
     );
   }
