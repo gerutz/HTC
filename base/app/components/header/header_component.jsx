@@ -1,107 +1,102 @@
 import React, { Component } from 'react';
-import styles from '../styles/styles.css';
-
-//Creamos componente HeaderComponent
+import Radium from 'radium';
 
 export default class HeaderComponent extends Component {
-
-  constructor(props) {
+  constructor(props){
     super(props);
+
     this.state = {
-      session_login : false,
-      log_in_false : 'Login',
-      log_in_true: 'LogOut',
-      register :'Registrate',
-      avatar_img : "https://media.licdn.com/media/AAEAAQAAAAAAAAQBAAAAJGU3M2Y3YWI2LWVjMTAtNGE5ZS1hZDVlLTc3ZTY4NGM5NTc3ZA.jpg",
-
-    };
-  }
-
-  handleLogin(){
-    return this.setState({session_login : true});
-  }
-
-  handleLogOut(){
-    return this.setState({session_login : false});
-  }
-
-  render() {
-
-    return(
-      <div>
-        <div className="styles.container">
-          <div className="logo_wrapper">
-            <a href="#"><img src="#" />HTC</a>
-          </div>
-          <div className="button_wrapper">
-            <HeaderButton title = {this.state.log_in_true} onOperar={this.handleLogin.bind(this)}/>
-            <HeaderButton title = {this.state.register}/>
-          </div>
-{/*
-          <div className="avatar_wrapper">
-            <HeaderAvatar img={this.state.avatar_img}/>
-          </div>
-*/}
-          <div className="header_menu_wrapper">
-            <HeaderMenu />
-          </div>
-        </div>
-      </div>
-    );
-  }
-}//end HeaderComponent
-
-export default class HeaderButton extends Component{
-  static get propTypes(){
-    return{
-      title : propTypes.string.isRequired,
+      usuario : [],
+      login : {
+        status : false,
+        id : ""
+      },
+      register : {
+        status : false,
+        id : ""
+      }
     }
   }
 
+  onLogin(usuarios) {
+    const nuevoUsuario = usuarios.map((usuario)=>{
+      return{
+          id : usuario.id,
+          nombre : usuario.nombre,
+          apellido : usuario.apellido,
+          email : usuario.email,
+          img : usuario.img
+      }
+    });
 
-  render(){
-    return(
-      <div>
-        <button>{this.props.title}</button>
-      </div>
-    );
+    this.setState({login: {status : true, id : nuevoUsuario.id}});
+    this.setState({usuario : nuevoUsuario});
+      console.log(this.state.login.status);
   }
-}// end HeaderButton
+
+  onLogOut(){
+    this.setState({login: {status : false, id : ""}});
+  }
+
+    render() {
+      //Estilos via Radium
+      const styles = {
+        headerWrapper : {
+          position: 'fixed',
+          width: '100%',
+          zIndex: 100,
+          backgroundColor: '#28282b'
+        },
+        loginWrapper :{
+          display : 'inline'
+        },
+        perfilWrapper : {
+          display : 'none'
+        },
+        menuWrapper : {
+          display : 'none'
+        }
+      };
+
+    return(
+      <div style={styles.headerWrapper}>
+        <div style={styles.logoWrapper}>
+            <h1>Logo </h1>
+        </div>
+        <div style={styles.loginWrapper}>
+          <LoginComponent
+            onLogin = {this.onLogin.bind(this)}
+            usuarios = {this.state.usuario}
+          />
+        </div>
 
 {/*
-
-
-export default class HeaderAvatar extends Component {
-
-  static get propTypes{
-    return {
-      avatar_img : propTypes.string.isRequired
-    }
-  }
-
-  render(){
-    return(
-      <div>
-        <img src={this.props.avatar_img}/>
-      </div>
-    );
-  }
-}//end HeaderAvatar
+  <div style={styles.perfilWrapper}>
+    <PerfilComponent />
+  </div>
+  <div style={styles.menuWrapper}>
+    <MenuComponent />
+  </div>
 
 */}
 
-export default class HeaderMenu extends Component {
+      </div>
+    );
+  }
+}// end HeaderComponent
 
+export default class LoginComponent extends Component {
+  static get PropTypes(){
+    onLogin : PropTypes.function.isRequired;
+    usuarios : PropTypes.array.isRequired;
+  }
   render(){
     return(
       <div>
-        <ul>
-          <li><a href="#">Editar</a></li>
-          <li><a href="#">Favoritos</a></li>
-          <li><a href="#">Comentarios</a></li>
-          <li><a href="#">Salir</a></li>
-        </ul>
-        </div>
+        <button onClick={this.props.onLogin}>Login</button>
+        <button>Register</button>
+      </div>
+
     );
   }
 }

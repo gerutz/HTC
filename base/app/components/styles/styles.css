@@ -1,0 +1,46 @@
+/* Seccion Nav */
+
+container{
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    z-index: 100;
+    background-color: #28282b;
+}
+.logo{
+ float: left;
+}
+.logo a{
+    text-decoration: none;
+    color: #ffffff;
+}
+.menu{
+    border: 1px solid;
+    padding: 2%;
+}
+ul.bannerList{
+    float: right;
+    padding: 0%;
+    list-style: none;
+    display: inline;
+    width: 21%;
+    margin-top: 2%;
+}
+li.elementosNav{
+   float: left;
+   border: 1px solid white;
+   border-radius: 2px;
+   margin-left: 3%;
+   padding: 3%;
+   font-size: larger;
+   color: #ffffff;
+}
+.logo{
+    font-size: xx-large;
+    padding: 2%;
+    float: left;
+    font-family: monospace;
+    font-size: -webkit-xxx-large;
+    color: #ffffff;
+    margin-left: 0%;
+    }
